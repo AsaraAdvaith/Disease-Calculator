@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Disease Calculator</h1>
+    <form id="calculatorForm">
+        <label for="backPain">Back Pain:</label>
+        <input type="number" id="backPain" step="0.01"><br>
+
+        <label for="morningStiffness">Duration of Morning Stiffness:</label>
+        <input type="number" id="morningStiffness" step="0.01"><br>
+
+        <label for="patientGlobal">Patient Global:</label>
+        <input type="number" id="patientGlobal" step="0.01"><br>
+
+        <label for="peripheralPain">Peripheral Pain/Swelling:</label>
+        <input type="number" id="peripheralPain" step="0.01"><br>
+
+        <label for="crp">CRP (mg/L):</label>
+        <input type="number" id="crp" step="0.01"><br>
+
+        <button type="button" onclick="calculateDisease()">Calculate</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateDisease() {
+            var backPain = parseFloat(document.getElementById("backPain").value);
+            var morningStiffness = parseFloat(document.getElementById("morningStiffness").value);
+            var patientGlobal = parseFloat(document.getElementById("patientGlobal").value);
+            var peripheralPain = parseFloat(document.getElementById("peripheralPain").value);
+            var crp = parseFloat(document.getElementById("crp").value);
+
+            // Perform calculation using the provided formula
+            var diseaseRisk = 0.12 * backPain + 0.06 * morningStiffness + 0.11 * patientGlobal + 0.07 * peripheralPain + 0.58 * Math.log(crp + 1);
+
+            // Display the result
+            document.getElementById("result").innerHTML = "Disease Risk: " + diseaseRisk.toFixed(2);
+        }
+    </script>
+</body>
+</html>
